@@ -6,4 +6,4 @@ Alla request körs i /db
 git clone https://github.com/mangeos/backend-jsramverk/
 
 # Mongodb
-För att återställa databas kör node run ./src/setup.js
+För att återställa databas kör node run  ./src/setup.js
