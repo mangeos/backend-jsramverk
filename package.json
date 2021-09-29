@@ -7,8 +7,10 @@
     "start": "node app.js",
     "start2": "node ./src/server.js",
     "production": "cross-env NODE_ENV=production node app.js",
-    "test": "nyc --reporter=html --reporter=text --reporter=clover mocha --timeout 10000",
-    "clean": "rm -rf nod_modules/ package-lock.json"
+    "test1": "nyc --reporter=html --reporter=text mocha",
+    "test": "nyc --all --reporter=html --reporter=text --reporter=clover mocha --timeout 10000",
+    "clean": "rm -rf nod_modules/ package-lock.json",
+    "clean-tests": "npm run clean && npm install && npm test"
   },
   "author": "",
   "license": "ISC",
@@ -23,7 +25,8 @@
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
     "cross-env": "^7.0.3",
-    "mocha": "^9.1.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^9.1.2",
     "nyc": "^15.1.0"
   }
 }
