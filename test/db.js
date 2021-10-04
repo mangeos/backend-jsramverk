@@ -56,8 +56,35 @@ describe('app', () => {
                     }
                 )
                 .end((err, res) => {
-                    console.log(res.body);
+                    res.should.have.status(201);
                     done();
+                });
+        });
+
+    });
+});
+
+describe('app', () => {
+    describe('PUT /', () => {
+        it('should change the first value : /db PUT', (done) => {
+            chai.request(server)
+                .get("/db")
+                .end((err, res) => {
+                    chai.request(server)
+                        .put('/db')
+                        .send({ 
+                            _id:res.body[0]._id,
+                            title: 'Spider',
+                            html: "sdsds" 
+                        })
+                        .end(function (error, response) {
+                            response.should.have.status(200);
+                            response.should.be.json;
+                            response.body.should.be.a('object');
+                           // console.log(response);
+                            response.body.matchedCount.should.equal(1);
+                            done();
+                        });
                 });
         });
 

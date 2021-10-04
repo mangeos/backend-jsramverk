@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1632919282037" clover="3.2.0">
-  <project timestamp="1632919282037" name="All files">
-    <metrics statements="165" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="30" coveredmethods="0" elements="209" coveredelements="0" complexity="0" loc="165" ncloc="165" packages="4" files="7" classes="7"/>
+<coverage generated="1632928807831" clover="3.2.0">
+  <project timestamp="1632928807831" name="All files">
+    <metrics statements="167" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="30" coveredmethods="0" elements="213" coveredelements="0" complexity="0" loc="167" ncloc="167" packages="4" files="7" classes="7"/>
     <package name="backend">
       <metrics statements="36" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="8" coveredmethods="0"/>
       <file name="app.js" path="C:\cygwin64\home\Magnus\dbwebb\dbwebb-kurser\jsramverk\backend\app.js">
@@ -131,7 +131,7 @@
       </file>
     </package>
     <package name="backend.src">
-      <metrics statements="58" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="10" coveredmethods="0"/>
+      <metrics statements="60" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="10" coveredmethods="0"/>
       <file name="search.js" path="C:\cygwin64\home\Magnus\dbwebb\dbwebb-kurser\jsramverk\backend\src\search.js">
         <metrics statements="22" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
@@ -184,20 +184,22 @@
         <line num="70" count="0" type="stmt"/>
       </file>
       <file name="setup.js" path="C:\cygwin64\home\Magnus\dbwebb\dbwebb-kurser\jsramverk\backend\src\setup.js">
-        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="15" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
         <line num="58" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
       </file>
     </package>
   </project>
