@@ -5,8 +5,8 @@
 
 const mongo = require("mongodb").MongoClient;
 
-let dsn = "mongodb://localhost:27017/mumin";
-//let dsn = "mongodb+srv://maoi19:pass@cluster0.g0yj8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+//let dsn = "mongodb://localhost:27017/mumin";
+let dsn = "mongodb+srv://maoi19:pass@cluster0.g0yj8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 //  const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
 if (process.env.NODE_ENV === 'test') {

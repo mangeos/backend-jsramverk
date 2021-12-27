@@ -3,13 +3,61 @@ const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require("body-parser");
-const port = process.env.PORT || 1337;
+const port = process.env.PORT || 1338;
 
 
 const index = require('./routes/index');
 const db = require('./routes/db');
 // const hello = require('./routes/hello');
 // const db = require('./routes/db');
+
+
+const httpServer = require("http").createServer(app);
+
+
+
+
+const io = require("socket.io")(httpServer, {
+  cors: {
+      //  origin: 'http://localhost:1338',
+        //'Access-Control-Allow-Origin': 'http://localhost:1338',
+        origin: 'https://www.student.bth.se',
+        'Access-Control-Allow-Origin': 'https://www.student.bth.se',
+    methods: ["GET", "POST", "PUT"]
+  }
+});
+
+io.sockets.on('connection', function(socket) {
+    console.log("user connected"); // user conected
+    console.log(socket.id); // Nått lång och slumpat
+    console.log("1");
+    //socket.emit("Hello!","sdsds");
+    //socket.on("chat message", function(message) {
+      //  io.emit("chat message", message);
+        //console.log("from client");
+       // console.log(message);
+ //   });
+
+    
+  
+
+     socket.on('editor', (data) => {
+        console.log(data._id, data.text);
+        console.log("send from server", data.text);
+        
+        socket.leave(data._id);
+        socket.join(data._id);
+
+        //io.to(data._id).emit("chat", data.text);
+        socket.to(data._id).emit("chat", data.text);
+        //socket.emit("chat", data.text);
+            
+            
+    });
+});
+
+
+
 
 
 app.use(cors());
@@ -91,6 +139,6 @@ app.use((req, res, next) => {
 
 
 // Start up server
-const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+const server = httpServer.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 module.exports = server;

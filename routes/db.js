@@ -3,7 +3,7 @@ let router = express.Router();
 
 const mongoose = require('mongoose');
 
-let database = require('./../db/database')
+let database = require('./../db/database');
 
 router.get("/", async (req, res) => {
     const resultSet = await database.findAll();
