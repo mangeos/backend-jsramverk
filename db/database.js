@@ -1,13 +1,13 @@
 const mongo = require("mongodb").MongoClient;
 const config = require("./config.json");
-const collectionName = "crowd";
+//const collectionName = "crowd";
 
 const database = {
-    getDb: async function getDb () {
+    getDb: async function getDb(collectionName = "crowd") {
 
         let dsn = "mongodb+srv://maoi19:pass@cluster0.g0yj8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
        
-       //  const dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
+        dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
         if (process.env.NODE_ENV === 'test') {
             dsn = "mongodb://localhost:27017/mumin";
         }
@@ -29,9 +29,9 @@ const database = {
     findAll: async function findAll() {
         const db = await database.getDb();
         const resultSet = await db.collection.find({}).toArray();
-
+        
         await db.client.close();
-
+        
         return resultSet;
     },
     remove: async function remove() {

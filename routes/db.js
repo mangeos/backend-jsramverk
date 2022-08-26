@@ -1,23 +1,32 @@
 let express = require('express');
 let router = express.Router();
+const auth = require('../models/auth');
 
 const mongoose = require('mongoose');
 
 let database = require('./../db/database');
+/*
+router.get("/", (req, res, next) => auth.checkToken(req, res, next), async (req, res) => {
+    const resultSet = await database.findAll();
+    console.log(req.body);
 
-router.get("/", async (req, res) => {
+    res.json(resultSet);
+})
+*/
+router.get("/", (req, res, next) => auth.checkToken(req, res, next), async (req, res) => {
     const resultSet = await database.findAll();
     console.log(req.body);
 
     res.json(resultSet);
 })
 
-router.put("/", async (req, res) => {
+router.put("/", (req, res, next) => auth.checkToken(req, res, next), async (req, res, next) => {
     const ObjectId = mongoose.Types.ObjectId;
     const document = {
         $set:{
         title:req.body.title,
-        html:req.body.html
+        html:req.body.html,
+        allowed_user: req.body.allowed_users
         }
     };
     const filter = { _id:ObjectId(req.body._id)};
@@ -29,11 +38,12 @@ router.put("/", async (req, res) => {
     res.json(resultSet);
 })
 
-router.post("/", async (req, res) => {
+router.post("/", (req, res, next) => auth.checkToken(req, res, next), async (req, res, next) => {
     console.log(req.body);
     let document = {
         title: req.body.title,
-        html: req.body.html
+        html: req.body.html,
+        allowed_user: req.body.allowed_users
     };
    // res.json(document);
     const resultSet = await database.add_one(document);
@@ -43,7 +53,7 @@ router.post("/", async (req, res) => {
     };
 })
 
-router.delete("/", async (req, res) => {
+router.delete("/", (req, res, next) => auth.checkToken(req, res, next), async (req, res, next) => {
     const resultSet = await database.findAll();
 
     res.json(resultSet);

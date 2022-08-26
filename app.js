@@ -1,10 +1,10 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const port = process.env.PORT || 1338;
-
 
 const index = require('./routes/index');
 const db = require('./routes/db');
@@ -17,12 +17,20 @@ const httpServer = require("http").createServer(app);
 
 
 
+const auth = require("./routes/auth.js");
+const users = require("./routes/user.js");
+//const users = require("./route/users.js");
+//const data = require("./route/data.js");
+
+//const authModel = require("./models/auth.js");
+
+
 const io = require("socket.io")(httpServer, {
   cors: {
-      //  origin: 'http://localhost:1338',
-        //'Access-Control-Allow-Origin': 'http://localhost:1338',
-        origin: 'https://www.student.bth.se',
-        'Access-Control-Allow-Origin': 'https://www.student.bth.se',
+        origin: 'http://localhost:8080',
+        'Access-Control-Allow-Origin': 'http://localhost:8080',
+        //origin: 'https://www.student.bth.se',
+        //'Access-Control-Allow-Origin': 'https://www.student.bth.se',
     methods: ["GET", "POST", "PUT"]
   }
 });
@@ -87,6 +95,9 @@ app.use('/', index);
 
 app.use('/db', db);
 
+app.use("/auth", auth);
+
+app.use("/getallusers", users);
 
 app.get("/hello/:msg", (req, res) => {
     const data = {
