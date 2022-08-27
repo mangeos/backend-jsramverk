@@ -71,7 +71,7 @@ router.post('/register', async function (req, res) {
     console.log("apa");
 
     const saltRounds = 10;
-
+    const secret = process.env.ACCESS_TOKEN_SECRET;
     const email = req.body.username;
     const password = req.body.password;
     //const apiKey = body.api_key;
@@ -114,17 +114,13 @@ router.post('/register', async function (req, res) {
         
         const db = await database.getDb("members");
         await db.collection.insertOne({ username:email, password: hash});
-        
+        const resultset = await db.collection.find({ username: email }).toArray();
+
         
         await db.client.close();
-        
+        let token = jwt.sign(resultset[0], secret, { expiresIn: '1h' });
         //return status 201 that user have been created
-        return res.status(201).json({
-            Success: {
-                status: 201 ,
-                source: "/register",
-            }
-        });
+        return res.status(200).json({ token: token, msg: "Login success" })
     });
  
 })
