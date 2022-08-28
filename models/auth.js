@@ -6,7 +6,7 @@ const jwtSecret = process.env.ACCESS_TOKEN_SECRET;
 const auth = {
     checkToken: function (req, res, next) {
         let token = req.headers['x-access-token'];
-        
+      //  console.log(req.headers['loggedInUser']);
         
         if (token) {
             jwt.verify(token, jwtSecret, function (err, decoded) {
@@ -20,8 +20,10 @@ const auth = {
                         }
                     });
                 }
-                console.log(decoded);
-
+              //  console.log(decoded.username);
+                if (decoded.username) {
+                    return next()
+                }
              //   req.user = {};
                // req.user.email = decoded.email;
 

@@ -8,16 +8,23 @@ let database = require('./../db/database');
 /*
 router.get("/", (req, res, next) => auth.checkToken(req, res, next), async (req, res) => {
     const resultSet = await database.findAll();
-    console.log(req.body);
-
+    console.log(req.headers['loggedinuser']);
+    //console.log(req.headers['x-access-token']);
     res.json(resultSet);
 })
 */
 router.get("/", (req, res, next) => auth.checkToken(req, res, next), async (req, res) => {
     const resultSet = await database.findAll();
     console.log(req.body);
-
-    res.json(resultSet);
+    console.log(resultSet);
+    
+    let sample = [];
+    for (let index = 0; index < resultSet.length; index++) {
+        if (resultSet[index].allowed_user.includes(req.headers['loggedinuser']) ) {
+            sample.push(resultSet[index])
+        }
+    }
+    res.json(sample);
 })
 
 router.put("/", (req, res, next) => auth.checkToken(req, res, next), async (req, res, next) => {
