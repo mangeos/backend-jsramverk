@@ -7,7 +7,7 @@ const database = {
 
         let dsn = "mongodb+srv://maoi19:pass@cluster0.g0yj8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
        
-        dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
+       // dsn =  process.env.DBWEBB_DSN || "mongodb://localhost:27017/mumin";
         if (process.env.NODE_ENV === 'test') {
             dsn = "mongodb://localhost:27017/mumin";
         }
@@ -29,25 +29,19 @@ const database = {
     findAll: async function findAll() {
         const db = await database.getDb();
         const resultSet = await db.collection.find({}).toArray();
-        
         await db.client.close();
-        
         return resultSet;
     },
     remove: async function remove() {
         const db = await database.getDb();
         const resultSet = await db.collection.find({}).toArray();
-
         await db.client.close();
-
         return resultSet;
     },
     add_one: async function add_one(data) {
         const db = await database.getDb();
         const resultSet = await db.collection.insertOne(data);
-
         await db.client.close();
-
         return resultSet;
     }, 
     add_multi: async function add_multi() {
