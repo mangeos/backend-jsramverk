@@ -24,6 +24,7 @@ const httpServer = require("http").createServer(app);
 
 const auth = require("./routes/auth.js");
 const users = require("./routes/user.js");
+const mail = require("./routes/mail.js");
 //const users = require("./route/users.js");
 //const data = require("./route/data.js");
 
@@ -32,18 +33,18 @@ const users = require("./routes/user.js");
 
 const io = require("socket.io")(httpServer, {
     cors: {
-        origin: 'http://localhost:8080',
-        'Access-Control-Allow-Origin': 'http://localhost:8080',
-        //origin: 'https://www.student.bth.se',
-        //'Access-Control-Allow-Origin': 'https://www.student.bth.se',
+     //   origin: 'http://localhost:8080',
+      //  'Access-Control-Allow-Origin': 'http://localhost:8080',
+        origin: 'https://www.student.bth.se',
+        'Access-Control-Allow-Origin': 'https://www.student.bth.se',
         methods: ["GET", "POST", "PUT"]
     }
 });
 
 io.sockets.on('connection', function(socket) {
     console.log("user connected"); // user conected
-    console.log(socket.id); // Nått lång och slumpat
-    console.log("1");
+   // console.log(socket.id); // Nått lång och slumpat
+  //  console.log("1");
     //socket.emit("Hello!","sdsds");
     //socket.on("chat message", function(message) {
         //  io.emit("chat message", message);
@@ -116,7 +117,9 @@ io.sockets.on('connection', function(socket) {
     app.use('/db', db);
     
     app.use("/auth", auth);
-    
+
+    app.use("/mail", mail);
+
     app.use("/getallusers", users);
     
     app.get("/hello/:msg", (req, res) => {
