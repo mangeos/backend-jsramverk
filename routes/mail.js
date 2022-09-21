@@ -9,7 +9,7 @@ router.post("/", async (req, res) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
     const msg = {
         to: req.body.to, // Change to your recipient
-        from: 'mange.ostling@protonmail.com', // Change to your verified sender
+        from: 'mange_9l@hotmail.com', // Change to your verified sender
         subject: req.body.sub,
         html: req.body.text,
     }

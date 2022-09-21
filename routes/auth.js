@@ -15,7 +15,7 @@ router.post('/login', async function (req, res) {
     const password = req.body.password;
     const secret = process.env.ACCESS_TOKEN_SECRET;
 
-    console.log(secret);
+    //console.log(secret);
 
     const db = await database.getDb("members");
 
